@@ -130,9 +130,9 @@ class MongoPipeline(ItemPipeline):
                 )
         ):
             if self.settings.get("PIPELINE_MONGO_AUTH_SOURCE"):
-                 database = self.settings.get("PIPELINE_MONGO_AUTH_SOURCE") 
+                database = self.settings.get("PIPELINE_MONGO_AUTH_SOURCE")
             else:
-                 database = self.settings.get("PIPELINE_MONGO_DATABASE")
+                database = self.settings.get("PIPELINE_MONGO_DATABASE")
             yield self._get_callable(
                  self.mongo.authenticate, 
                  database=self.settings.get("PIPELINE_MONGO_AUTH_SOURCE"))
