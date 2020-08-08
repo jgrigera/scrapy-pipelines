@@ -66,7 +66,8 @@ class MongoPipeline(ItemPipeline):
         :rtype: MongoPipeline
         """
         pipe = super().from_crawler(crawler=crawler)
-        crawler.signals.connect(receiver=pipe.process_item_id, signal=item_id)
+        # dont understand this line - who will trigger item_id?
+        # crawler.signals.connect(receiver=pipe.process_item_id, signal=item_id)
         return pipe
 
     @classmethod
@@ -212,6 +213,7 @@ class MongoPipeline(ItemPipeline):
         :return:
         :rtype: Item
         """
+        spider.crawler.signals.send_catch_log(item_id, result=result, item=item)
         return item
 
     @inlineCallbacks
